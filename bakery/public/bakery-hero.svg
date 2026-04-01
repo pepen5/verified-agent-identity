@@ -1,0 +1,17 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1600" height="1000" fill="#8B5E3C"/>
+<rect y="618" width="1600" height="382" fill="#5D3C27"/>
+<rect x="86" y="88" width="432" height="436" rx="24" fill="#FAF7F0" fill-opacity="0.14"/>
+<rect x="1106" y="108" width="388" height="374" rx="24" fill="#FAF7F0" fill-opacity="0.12"/>
+<rect x="218" y="648" width="1160" height="58" rx="18" fill="#6B4B30"/>
+<ellipse cx="456" cy="593" rx="160" ry="74" fill="#D8A97D"/>
+<circle cx="408" cy="568" r="28" fill="#C4937A"/>
+<circle cx="504" cy="598" r="24" fill="#C4937A"/>
+<ellipse cx="924" cy="572" rx="198" ry="120" fill="#E7B878"/>
+<rect x="840" y="424" width="182" height="102" rx="51" fill="#F3D39B"/>
+<ellipse cx="1204" cy="560" rx="136" ry="86" fill="#E4C7A7"/>
+<circle cx="1160" cy="554" r="24" fill="#C4937A"/>
+<circle cx="1235" cy="524" r="22" fill="#C4937A"/>
+<path d="M108 740H1496" stroke="#F5ECD7" stroke-opacity="0.1" stroke-width="10" stroke-linecap="round"/>
+<path d="M0 128C244 192 483 198 717 146C1022 78 1270 39 1600 148" stroke="#FAF7F0" stroke-opacity="0.08" stroke-width="44"/>
+</svg>
