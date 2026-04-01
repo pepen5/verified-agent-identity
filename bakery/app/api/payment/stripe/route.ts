@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { products } from '@/lib/products';
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
@@ -18,16 +19,25 @@ export async function POST(req: NextRequest) {
     const { items, customerEmail } = await req.json();
     const origin = req.headers.get('origin') || 'http://localhost:3001';
 
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: items.map((item: { name: string; price: number; quantity: number }) => ({
+    const lineItems = items.map((item: { slug: string; quantity: number }) => {
+      const product = products.find((entry) => entry.slug === item.slug);
+      if (!product) {
+        throw new Error(`Unknown product: ${item.slug}`);
+      }
+
+      return {
         price_data: {
           currency: 'idr',
-          product_data: { name: item.name },
-          unit_amount: item.price,
+          product_data: { name: product.name },
+          unit_amount: product.price,
         },
         quantity: item.quantity,
-      })),
+      };
+    });
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: lineItems,
       mode: 'payment',
       customer_email: customerEmail,
       success_url: `${origin}/order-success?session_id={CHECKOUT_SESSION_ID}`,

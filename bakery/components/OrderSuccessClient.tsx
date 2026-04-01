@@ -14,14 +14,20 @@ export default function OrderSuccessClient({ orderId }: { orderId?: string }) {
   const [order, setOrder] = useState<OrderData | null>(null);
 
   useEffect(() => {
-    window.localStorage.removeItem('bakery-cart');
+    const params = new URLSearchParams(window.location.search);
+    const hasPaymentProof = orderId || params.get('session_id');
+
+    if (hasPaymentProof) {
+      window.localStorage.removeItem('bakery-cart');
+    }
+
     const stored = window.localStorage.getItem('bakery-last-order');
     if (stored) {
       try {
         setOrder(JSON.parse(stored));
       } catch {}
     }
-  }, []);
+  }, [orderId]);
 
   const resolvedOrderId = orderId || order?.id || `RR-${Math.floor(100000 + Math.random() * 900000)}`;
 

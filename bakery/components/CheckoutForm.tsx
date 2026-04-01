@@ -66,16 +66,12 @@ export default function CheckoutForm() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             orderId,
-            amount: total,
             customerDetails: {
               name: form.name,
               email: form.email,
               phone: form.phone,
             },
-            items: [
-              ...items.map((item) => ({ slug: item.slug, name: item.name, price: item.price, quantity: item.quantity })),
-              { slug: 'shipping', name: 'Flat Shipping', price: SHIPPING_FEE, quantity: 1 },
-            ],
+            items: items.map((item) => ({ slug: item.slug, quantity: item.quantity })),
           }),
         });
         const data = await response.json();
@@ -101,10 +97,7 @@ export default function CheckoutForm() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          items: [
-            ...items.map((item) => ({ name: item.name, price: item.price, quantity: item.quantity })),
-            { name: 'Flat Shipping', price: SHIPPING_FEE, quantity: 1 },
-          ],
+          items: items.map((item) => ({ slug: item.slug, quantity: item.quantity })),
           customerEmail: form.email,
         }),
       });
